@@ -1,0 +1,78 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ProfileImage {
+  path: String
+  key: String
+}
+
+type PermissionObj {
+  permission: String
+  name: String
+  enable: Boolean
+}
+
+type RoleObj {
+  _id: String
+  name: String
+  permissions: [PermissionObj!]
+}
+
+type UserCreateObj {
+  _id: String!
+  first_name: String
+  last_name: String
+  email: String
+  phone: String
+  profile_image: ProfileImage
+  dob: Float
+  gender: String
+  password: String
+  status: String
+  property_listing_setting: [String!]
+  user_type: String
+  user_role: RoleObj
+}
+
+type UserGraphqlSingleObj {
+  status: Float
+  data: UserCreateObj
+}
+
+type UserGraphqlObj {
+  status: Float
+  size: Float
+  data: [UserCreateObj!]
+}
+
+type UserGraphqlCreateObj {
+  status: Float
+  data: UserCreateObj
+}
+
+type Query {
+  getAllUsers(page: Float, limit: Float = 25, user_type: String = null, user_role: String = null, status: String = null): UserGraphqlObj!
+  getUserById(_id: String!): UserGraphqlSingleObj!
+}
+
+type Mutation {
+  createUser(userData: UserInputObj): UserGraphqlCreateObj!
+}
+
+input UserInputObj {
+  first_name: String
+  last_name: String
+  email: String!
+  phone: String!
+  profile_image: ProfileImagee
+  dob: Float
+  gender: String
+  password: String!
+  status: String
+}
+
+input ProfileImagee {
+  path: String
+  key: String
+}
