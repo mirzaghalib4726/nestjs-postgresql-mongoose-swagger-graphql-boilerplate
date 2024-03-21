@@ -1,20 +1,18 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import {
+  IsAlphanumeric,
+  IsBoolean,
   IsDefined,
   IsEmail,
-  IsNumber,
-  IsString,
-  MinLength,
   IsEnum,
-  Matches,
-  IsOptional,
+  IsNumber,
   IsObject,
-  IsBoolean,
+  IsOptional,
+  IsString,
   MaxLength,
-  IsAlphanumeric,
-  IsInt,
+  MinLength,
 } from "class-validator";
-import { IsPhoneNumber } from "src/decorators/phoneNumber.decorator";
+// import { IsPhoneNumber } from "src/decorators/phoneNumber.decorator";
 
 const passwordRegEx =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,20}$/;
@@ -42,9 +40,9 @@ export class DatabaseUserDto {
   address: string;
 
   @ApiProperty()
-  @IsNumber()
+  @IsString()
   @IsDefined()
-  dob: number;
+  dob: string;
 
   @ApiProperty()
   @IsString()
@@ -53,13 +51,13 @@ export class DatabaseUserDto {
 
   @ApiProperty()
   @IsDefined()
-  @Matches(passwordRegEx, {
-    message: `Password must contain Minimum 8 and maximum 20 characters, 
-    at least one uppercase letter, 
-    one lowercase letter, 
-    one number and 
-    one special character`,
-  })
+  // @Matches(passwordRegEx, {
+  //   message: `Password must contain Minimum 8 and maximum 20 characters,
+  //   at least one uppercase letter,
+  //   one lowercase letter,
+  //   one number and
+  //   one special character`,
+  // })
   password: string;
 
   @ApiPropertyOptional()
@@ -108,11 +106,11 @@ export class DatabaseUserDto {
   login_tries?: number;
 
   @ApiProperty()
-  @IsInt()
+  @IsString()
   @IsDefined()
   @MinLength(4)
   @MaxLength(4)
-  pin_code: number;
+  pin_code: string;
 
   @ApiPropertyOptional()
   @IsBoolean()

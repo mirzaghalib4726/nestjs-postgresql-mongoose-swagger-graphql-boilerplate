@@ -1,49 +1,48 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({
+  name: "users",
+})
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "varchar", length: 30, nullable: false })
+  @Column({ type: "text", nullable: false })
   full_name: string;
 
-  // @Column({ type: 'varchar', length: 30 })
-  // display_name: string;
-
-  @Column({ type: "varchar", length: 40 })
+  @Column({ type: "text" })
   email: string;
 
-  @Column({ type: "varchar", length: 30 })
+  @Column({ type: "text" })
   phone: string;
 
-  @Column({ type: "int" })
-  dob: number;
+  @Column({ type: "text", nullable: false })
+  dob: string;
 
   @Column({ type: "enum", enum: ["Male", "Female", "Others"] })
   gender: string;
 
-  @Column({ type: "varchar" })
+  @Column({ type: "text" })
   password: string;
 
-  @Column({ type: "varchar", length: 50 })
+  @Column({ type: "text", nullable: true })
   security_question: string;
 
-  @Column({ type: "varchar", length: 40 })
+  @Column({ type: "text", nullable: true })
   security_answer: string;
 
-  @Column({ type: "varchar", length: 30 })
+  @Column({ type: "text" })
   address: string;
 
-  @Column({ type: "int" })
-  last_login: number;
+  @Column({ type: "text", nullable: true })
+  last_login: string;
 
-  @Column({ type: "varchar", length: 30 })
-  ip_address: number;
+  @Column({ type: "text" })
+  ip_address: string;
 
-  @Column({ type: "varchar", length: 30 })
+  @Column({ type: "text" })
   nickname: string;
 
-  @Column({ type: "varchar", length: 30 })
+  @Column({ type: "text" })
   status: string;
 }
